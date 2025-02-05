@@ -13,7 +13,7 @@ const RecipeDetails = ({ recipe }) => {
       return
     }
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/recipes/${recipe._id}` , {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes/${recipe._id}` , {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -26,50 +26,55 @@ const RecipeDetails = ({ recipe }) => {
     }
   }
 
-  // const handleUpdate = async () => {
-  //   if (!user) {
-  //     return
-  //   }
-
-  //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes/${recipe._id}` , {
-  //     method: 'UPDATE',
-  //     headers: {
-  //       'Authorization': `Bearer ${user.token}`
-  //     }
-  //   })
-  //   const json = await response.json()
-
-  //   if (response.ok) {
-  //     dispatch({type: 'UPDATE_RECIPE', payload: json})
-  //   }
-  // }
   const handleUpdate = async () => {
     if (!user) {
       return
     }
-  
-    const updatedRecipe = {
-      name: recipe.name,
-      ingredients: recipe.ingredients,
-      instructions: recipe.instructions,
-      preparationTime: recipe.preparationTime,
-      difficultyLevel: recipe.difficultyLevel
-    }
-  
+
     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes/${recipe._id}` , {
-      method: 'PUT',  // Use 'PUT' or 'PATCH' for updating
+      method: 'PUT',
       headers: {
         'Authorization': `Bearer ${user.token}`,
-        'Content-Type': 'application/json'  // Ensure you're sending JSON data
+        'Content-Type': 'application/json' 
       },
-      body: JSON.stringify(updatedRecipe)  // Send updated recipe details
-    })
+
+      body: JSON.stringify(recipe)
+    });
+
     const json = await response.json()
-  
+
     if (response.ok) {
       dispatch({type: 'UPDATE_RECIPE', payload: json})
     }
   }
+
+  // const handleUpdate = async () => {
+  //   if (!user) {
+  //     return
+  //   }
+  
+  //   const updatedRecipe = {
+  //     name: recipe.name,
+  //     ingredients: recipe.ingredients,
+  //     instructions: recipe.instructions,
+  //     preparationTime: recipe.preparationTime,
+  //     difficultyLevel: recipe.difficultyLevel
+  //   }
+  
+  //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes/${recipe._id}` , {
+  //     method: 'PUT', 
+  //     headers: {
+  //       'Authorization': `Bearer ${user.token}`,
+  //       'Content-Type': 'application/json'  // Ensure you're sending JSON data
+  //     },
+  //     body: JSON.stringify(updatedRecipe)  // Send updated recipe details
+  //   })
+  //   const json = await response.json()
+  
+  //   if (response.ok) {
+  //     dispatch({type: 'UPDATE_RECIPE', payload: json})
+  //   }
+  // }
   
   return (
     <div className="recipe-details">
