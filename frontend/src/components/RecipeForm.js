@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 const RecipeForm = () => {
   const { dispatch } = useRecipesContext()
+  const { user } = useAuthContext()
 
   const [name, setName] = useState('')
   const [ingredients, setIngredients] = useState('')
