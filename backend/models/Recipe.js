@@ -14,10 +14,10 @@ const RecipeSchema = new mongoose.Schema(
     preparationTime: { type: Number, required: true },
     difficultyLevel: {
       type: String,
-      enum: ["easy", "medium", "hard"],
+      enum: ['Easy', 'Medium', 'Hard'], // Enum values
       required: true,
     },
-    imageUrl: { type: String },
+    // imageUrl: { type: String },
   },
   { timestamps: true }
 );
