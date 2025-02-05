@@ -24,7 +24,7 @@ const RecipeForm = () => {
 
     const recipe = {name, ingredients, instructions, preparationTime, difficultyLevel}
     
-    const response = await fetch('/api/workouts', {
+    const response = await fetch('/api/recipes', {
       method: 'POST',
       body: JSON.stringify(recipe),
       headers: {
