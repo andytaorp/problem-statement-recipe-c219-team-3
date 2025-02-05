@@ -28,9 +28,9 @@ const RecipeDetails = ({ recipe }) => {
 
   return (
     <div className="recipes-details">
-      <h4>{recipe.title}</h4>
-      <p><strong>Load (kg): </strong>{recipe.load}</p>
-      <p><strong>Reps: </strong>{recipe.reps}</p>
+      <h4>{recipe.name}</h4>
+      <p><strong>Ingredients: </strong>{recipe.ingredients}</p>
+      <p><strong>Instructions: </strong>{recipe.instructions}</p>
       <p>{formatDistanceToNow(new Date(recipe.createdAt), { addSuffix: true })}</p>
       <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
     </div>
