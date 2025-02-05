@@ -22,6 +22,12 @@ const RecipeForm = () => {
       return;
     }
     console.log('User Token:', user?.token);
+    if (!user?.token) {
+      console.error("No token found. User might not be authenticated.");
+      setError('Authentication issue. Please log in again.');
+      return;
+    }
+    
 
   
     // Ensure ingredients are sent as an array and preparationTime as a number
@@ -29,9 +35,11 @@ const RecipeForm = () => {
       name,
       ingredients: ingredients.split(',').map(item => item.trim()), // Convert string to array
       instructions,
-      preparationTime: Number(preparationTime), // Convert string to number
+      preparationTime,
       difficultyLevel
     };
+
+    console.log('Recipe Data:', recipe);
   
     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes`, {
       method: 'POST',
@@ -45,6 +53,7 @@ const RecipeForm = () => {
     const json = await response.json();
   
     if (!response.ok) {
+      console.error('Server Response:', json);
       setError(json.error);
       setEmptyFields(json.emptyFields);
     }
