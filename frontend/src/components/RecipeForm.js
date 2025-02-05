@@ -141,10 +141,10 @@ const RecipeForm = () => {
   const [preparationTime, setpreparationTime] = useState('')
   const [difficultyLevel, setdifficultyLevel] = useState('')
   const [error, setError] = useState(null)
-  const [emptyFields, setEmptyFields] = useState([]) // Default to an empty array
+  const [emptyFields, setEmptyFields] = useState([]) 
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents page reload on form submission
+    e.preventDefault(); 
   
     if (!user) {
       setError('You must be logged in');
@@ -157,10 +157,9 @@ const RecipeForm = () => {
       return;
     }
 
-    // Ensure ingredients are sent as an array and preparationTime as a number
     const recipe = {
       name,
-      ingredients: ingredients.split(',').map(item => item.trim()), // Convert string to array
+      ingredients: ingredients.split(',').map(item => item.trim()),
       instructions,
       preparationTime,
       difficultyLevel
@@ -180,11 +179,11 @@ const RecipeForm = () => {
     if (!response.ok) {
       console.error('Server Response:', json);
       setError(json.error);
-      setEmptyFields(json.emptyFields || []); // Ensure emptyFields is always an array
+      setEmptyFields(json.emptyFields || []);
     }
     
     if (response.ok) {
-      setEmptyFields([]); // Reset emptyFields on success
+      setEmptyFields([]);
       setError(null);
       setName('');
       setIngredients('');
@@ -207,7 +206,7 @@ const RecipeForm = () => {
         className={emptyFields.includes('name') ? 'error' : ''}
       />
 
-      <label>Ingredients Required:</label>
+      <label>Ingredients Required, e.g. Chicken, Milk, Etc.:</label>
       <input 
         type="text" 
         onChange={(e) => setIngredients(e.target.value)} 
