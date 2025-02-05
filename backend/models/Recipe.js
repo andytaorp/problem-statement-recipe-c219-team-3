@@ -11,13 +11,13 @@ const RecipeSchema = new mongoose.Schema(
     name: { type: String, required: true },
     ingredients: { type: [String], required: true },
     instructions: { type: String, required: true },
-    prepTime: { type: Number, required: true },
-    difficulty: {
+    preparationTime: { type: Number, required: true },
+    difficultyLevel: {
       type: String,
-      enum: ["easy", "medium", "hard"],
+      enum: ['Easy', 'Medium', 'Hard'], // Enum values
       required: true,
     },
-    imageUrl: { type: String },
+    // imageUrl: { type: String },
   },
   { timestamps: true }
 );
