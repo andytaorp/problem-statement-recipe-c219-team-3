@@ -5,6 +5,7 @@ import { useAuthContext } from './hooks/useAuthContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Analysis from './pages/Analysis'
 import Navbar from './components/Navbar'
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
             <Route 
               path="/signup" 
               element={!user ? <Signup /> : <Navigate to="/" />} 
+            />
+            <Route 
+              path="/nutrition-analysis" 
+              element={user ? <Analysis /> : <Navigate to="/nutrition-analysis" />} 
             />
           </Routes>
         </div>
