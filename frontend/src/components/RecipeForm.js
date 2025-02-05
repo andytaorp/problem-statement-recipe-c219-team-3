@@ -95,6 +95,18 @@ const RecipeForm = () => {
         className={emptyFields.includes('difficultyLevel') ? 'error' : ''}
       />
 
+      <label>Difficulty Level:</label>
+      <select 
+        onChange={(e) => setdifficultyLevel(e.target.value)} 
+        value={difficultyLevel} 
+        className={emptyFields.includes('difficultyLevel') ? 'error' : ''}
+      >
+        <option value="" disabled>Select the difficulty level</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+
       <button>Add Recipe</button>
       {error && <div className="error">{error}</div>}
     </form>
