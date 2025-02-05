@@ -15,41 +15,52 @@ const RecipeForm = () => {
   const [emptyFields, setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-
+    e.preventDefault(); // Prevents page reload on form submission
+  
     if (!user) {
-      setError('You must be logged in')
-      return
+      setError('You must be logged in');
+      return;
     }
+    console.log('User Token:', user?.token);
 
-    const recipe = {name, ingredients, instructions, preparationTime, difficultyLevel}
-    
-    const response = await fetch('/api/recipes', {
+  
+    // Ensure ingredients are sent as an array and preparationTime as a number
+    const recipe = {
+      name,
+      ingredients: ingredients.split(',').map(item => item.trim()), // Convert string to array
+      instructions,
+      preparationTime: Number(preparationTime), // Convert string to number
+      difficultyLevel
+    };
+  
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes`, {
       method: 'POST',
       body: JSON.stringify(recipe),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${user.token}`
       }
-    })
-    const json = await response.json()
-
+    });
+  
+    const json = await response.json();
+  
     if (!response.ok) {
-      setError(json.error)
-      setEmptyFields(json.emptyFields)
+      setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
+    
     if (response.ok) {
-      setEmptyFields([])
-      setError(null)
-      setName('')
-      setIngredients('')
-      setInstructions('')
-      setpreparationTime('')
-      setdifficultyLevel('')
-      dispatch({type: 'CREATE_RECIPE', payload: json})
+      setEmptyFields([]);
+      setError(null);
+      setName('');
+      setIngredients('');
+      setInstructions('');
+      setpreparationTime('');
+      setdifficultyLevel('');
+      dispatch({ type: 'CREATE_RECIPE', payload: json });
     }
-
-  }
+  };
+  
 
   return (
     <form className="create" onSubmit={handleSubmit}> 
