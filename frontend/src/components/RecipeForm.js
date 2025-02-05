@@ -88,14 +88,6 @@ const RecipeForm = () => {
       />
 
       <label>Difficulty Level:</label>
-      <input 
-        type="text" 
-        onChange={(e) => setdifficultyLevel(e.target.value)} 
-        value={difficultyLevel}
-        className={emptyFields.includes('difficultyLevel') ? 'error' : ''}
-      />
-
-      <label>Difficulty Level:</label>
       <select 
         onChange={(e) => setdifficultyLevel(e.target.value)} 
         value={difficultyLevel} 
