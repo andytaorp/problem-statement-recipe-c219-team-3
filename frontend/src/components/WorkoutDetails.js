@@ -1,4 +1,4 @@
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
+import { useWorkoutsContext } from '../hooks/useRecipesContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 // date fns
