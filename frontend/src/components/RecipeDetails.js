@@ -164,14 +164,14 @@ const RecipeDetails = ({ recipe }) => {
             onChange={handleChange}
           />
 
-          <label>Instructions:</label>
+          <label>Step by step instructions:</label>
           <textarea
             name="instructions"
             value={updatedRecipe.instructions}
             onChange={handleChange}
           />
 
-          <label>Preparation Time:</label>
+          <label>Preparation Time, in minutes:</label>
           <input
             type="number"
             name="preparationTime"
@@ -179,7 +179,7 @@ const RecipeDetails = ({ recipe }) => {
             onChange={handleChange}
           />
 
-          <label>Difficulty Level:</label>
+          <label>Difficulty Level, (Easy, Medium, Hard):</label>
           <input
             type="text"
             name="difficultyLevel"
