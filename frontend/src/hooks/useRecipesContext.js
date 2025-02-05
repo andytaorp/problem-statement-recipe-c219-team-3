@@ -1,7 +1,7 @@
 import { RecipesContext } from '../context/RecipesContext'
 import { useContext } from 'react'
 
-export const useWorkoutsContext = () => {
+export const useRecipesContext = () => {
   const context = useContext(RecipesContext)
 
   if (!context) {
