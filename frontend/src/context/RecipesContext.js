@@ -4,7 +4,7 @@ export const RecipesContext = createContext()
 
 export const recipesReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_RECIPE': 
+    case 'SET_RECIPES': 
       return {
         recipes: action.payload
       }
