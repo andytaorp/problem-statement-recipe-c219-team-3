@@ -15,13 +15,19 @@ const RecipeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    if (!user) {
+      setError('You must be logged in')
+      return
+    }
+
     const recipe = {name, ingredients, instructions, preparationTime, difficultyLevel}
     
     const response = await fetch('/api/workouts', {
       method: 'POST',
       body: JSON.stringify(recipe),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
     const json = await response.json()
