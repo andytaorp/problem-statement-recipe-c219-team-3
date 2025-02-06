@@ -19,7 +19,7 @@ const Navbar = () => {
         <nav>
           {user && (
             <Link to="nutrition-analysis">
-              <button>Nutrition Analysis</button>
+              <button className="analysis">Nutrition Analysis</button>
             </Link>
           )}
           {user && (
