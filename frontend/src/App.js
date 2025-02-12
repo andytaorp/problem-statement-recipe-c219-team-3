@@ -31,7 +31,7 @@ function App() {
             />
             <Route 
               path="/nutrition-analysis" 
-              element={user ? <Analysis /> : <Navigate to="/nutrition-analysis" />} 
+              element={<Analysis />} 
             />
           </Routes>
         </div>

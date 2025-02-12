@@ -30,6 +30,8 @@ const Analysis = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("handlesubmit")
     const fileInput = e.target.foodImg.files[0];
 
     if (!fileInput) {
@@ -70,9 +72,12 @@ const Analysis = () => {
         }
       );
 
+      console.log("response: ", nutritionResponse)
+
       if (!nutritionResponse.ok) throw new Error("Nutrition analysis failed");
 
       const nutritionData = await nutritionResponse.json();
+      console.log("data: ", nutritionData)
       setNutritionInfo(nutritionData);
     } catch (error) {
       console.error("Error:", error);
@@ -100,10 +105,10 @@ const Analysis = () => {
       {nutritionInfo && (
         <div>
           <h3>Nutritional Details:</h3>
-          <p>Calories: {nutritionInfo.calories} kcal</p>
-          <p>Protein: {nutritionInfo.protein} g</p>
-          <p>Carbohydrates: {nutritionInfo.carbohydrates} g</p>
-          <p>Fats: {nutritionInfo.fats} g</p>
+          <p>Calories: {nutritionInfo.nutritional_info.calories.toFixed(2)} kcal</p>
+          <p>Protein: {nutritionInfo.nutritional_info.dailyIntakeReference.PROCNT.percent.toFixed(2)} g</p>
+          <p>Carbohydrates: {nutritionInfo.nutritional_info.dailyIntakeReference.CHOCDF.percent.toFixed(2)} g</p>
+          <p>Fats: {nutritionInfo.nutritional_info.dailyIntakeReference.FAT.percent.toFixed(2)} g</p>
         </div>
       )}
     </div>
